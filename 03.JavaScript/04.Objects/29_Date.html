@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>29 내장객체: Date</title>
+<script type="text/javascript">
+	// 현재 날짜 Date 객체 생성
+	var today = new Date();
+	
+	// 화면 출력
+	document.write("년도:" + today.getFullYear() + "<br />");
+	document.write(" 달:" + (today.getMonth() + 1) + "<br />");
+	document.write("날짜:" + today.getDate() + "<br />");
+	document.write("요일:" + today.getDay() + "<br />");
+	document.write(" 시:" + today.getHours() + "<br />");
+	document.write(" 분:" + today.getMinutes() + "<br />");
+	document.write(" 초:" + today.getSeconds() + "<br />");
+	document.write("밀리초:" + today.getMilliseconds() + "<br />");
+	document.write("<hr />");
+	
+	// 년도를 2020년으로 변경
+	today.setYear(2020);
+	
+	document.write("today=" + today);
+	document.write("<hr />");
+	document.write();
+	document.write();
+	
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
