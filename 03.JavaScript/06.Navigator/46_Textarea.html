@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>46 textarea</title>
+<script type="text/javascript">
+	
+	function selectAll() {
+		// textarea 에는 입력된 내용(텍스트)를
+		// 전체 선택하는 select() 함수가 있다.
+		document.myForm.news.select();
+	}
+	
+</script>
+</head>
+<body>
+<!-- 	form[name="myForm"]>textarea[name="news"] -->
+	<form action="" name="myForm">
+		<textarea name="news" id="" cols="30" rows="10" onclick="selectAll();">가을장마에 이어 태풍이 한반도에 상륙할 것으로 보여 큰 피해가 우려됩니다.
+
+기상청은 남해에 머물던 정체전선이 내륙으로 올라오며 모레까지 전국에 비가 이어지겠다고 밝혔습니다.
+
+중서부에 300mm가 넘는 호우가 쏟아지겠고, 남부와 영동에도 최고 150mm 이상의 많은 비가 내리겠습니다.
+
+북상 중인 13호 태풍 '링링'은 이번 주말쯤 충남 서해안에 상륙한 뒤 수도권을 관통할 것으로 보입니다.
+
+기상청은 태풍이 예상대로 움직인다면 전국이 태풍 진로의 오른쪽, 위험반원에 들어 비바람 피해가 우려된다며 철저한 대비를 당부했습니다.</textarea>
+
+		<!-- input 타입 : button 
+		         버튼위에 글자 : 모두 선택 
+		     onclick 이벤트 : selectAll() 호출 -->
+<!-- 		input[type="button" value="모두 선택" onclick="selectAll();"] -->
+		<br />
+		<input type="button" value="모두 선택" onclick="selectAll();" />
+	</form>
+</body>
+</html>
+
+
+
+
+
