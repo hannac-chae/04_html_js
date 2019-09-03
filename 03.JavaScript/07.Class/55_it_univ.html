@@ -3,6 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <title>55 Member 클래스를 활용한 구성원 관리</title>
+<script type="text/javascript">
+//Member 타입의 선언 
+Member = function(userId, userName, address) {
+	// 클래스 프로퍼티 선언(자바의 멤버 변수 같은 속성 선언)
+	this.userId = userId;
+	this.userName = userName;
+	this.address = address;
+};
+
+Member.prototype = {
+	getUserId:function() {
+		return this.userId;
+	},
+	getUserName:function() {
+		return this.userName;
+	},
+	getAddress:function() {
+		return this.address;
+	},
+	setUserId:function(userId) {
+		this.userId = userId;
+	},
+	setUserName:function(userName) {
+		this.userName = userName;
+	}, 
+	setAddress:function(address) {
+		this.address = address;
+	},
+	getFullInfo:function() {
+		return this.userId + ":" + this.userName + ":" + this.address;
+	}
+	
+};
+
+//Array 객체 선언
+members = new Array(
+		  new Member("M001", "송종호", "포항시")
+		, new Member("M002", "박상용", "아산시")
+		, new Member("M003", "김지후", "수원시")
+		, new Member("M004", "김지원", "포천시")
+		, new Member("M005", "조기현", "수원시")
+		, new Member("M006", "강유환", "천안시")  
+		  );
+
+// 목록 폼에 구성원 정보 동적으로 그리는 함수
+function displayMembers() {
+	for (var idx = 0; idx < members.length; idx++) {
+		document.write("<tr>");
+			document.write("<td><input type='radio' name='detail' "
+					                + " onclick='selectMember();' "
+					                + " id='member" + idx + "'"
+					                + " /></td>");
+			document.write("<td><label for='member" + idx + "'>" 
+					                 + members[idx].userId 
+					         + "</label></td>");
+			document.write("<td><label for='member" + idx + "'>" + members[idx].userName + "</label></td>");
+			document.write("<td><label for='member" + idx + "'>" + members[idx].getAddress() + "</label></td>");
+		document.write("</tr>");
+	}
+}
+
+// 셀렉트 박스의 옵션을 동적으로 그리는 함수
+function displayOptions() {
+	for (var idx = 0; idx < members.length; idx++) {
+		document.write("<option value='" 
+				       + members[idx].userId + "'>" 
+				       + members[idx].userName + "</option>")
+	}
+}
+
+// 목록 폼에서 라디오 클릭시 이벤트 처리 함수
+function selectMember() {
+	for (var idx = 0; idx < members.length; idx++) {
+		if (document.listForm.detail[idx].checked) {
+			document.detailForm.userId.value = members[idx].userId;
+			document.detailForm.userName.value = members[idx].userName;
+			document.detailForm.address.value = members[idx].address;
+			break;
+		}
+	}
+}
+
+// 구성원 이름을 선택하는 셀렉트 박스의
+// onchange 이벤트 핸들러 처리 함수
+function searchMember() {
+	for (var idx = 0; idx < members.length; idx++) {
+		if (members[idx].userId == document.searchForm.selectId.value) {
+			document.detailForm.userId.value = members[idx].userId;
+			document.detailForm.userName.value = members[idx].userName;
+			document.detailForm.address.value = members[idx].address;
+			break;
+		}
+	}
+}
+
+</script>
 </head>
 <body>
 	<h3>Member 클래스를 활용한 구성원 관리</h3>
@@ -17,7 +113,59 @@
 		   (2) 라디오 버튼이 있는 목록 출력 표
 		   (3) 구성원 1명을 선택할 수 있는 select 
 		   (4) 각 요소에 맞는 이벤트 핸들러 함수 등 작성
-
 	 -->
+	<form action="" name="detailForm">
+	<table border="1">
+		<tr>
+			<td>아이디</td>
+			<td>
+				<input type="text" name="userId" />
+			</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td>
+				<input type="text" name="userName" />
+			</td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td>
+				<input type="text" name="address" />
+			</td>
+		</tr>
+	</table>
+	</form>
+	
+	<hr>
+	
+	<form action="" name="listForm">
+	<table>
+		<tr>
+			<th></th>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>주소</th>
+		</tr>
+		<!-- 스크립트로 배열에 있는 값을 사용하여 
+		     동적으로 테이블 그려 삽입 -->
+		<script type="text/javascript">
+			displayMembers();
+		</script>
+	</table>
+	</form>
+	
+	<!-- 이름을 선택하는 셀렉트 박스 -->
+	<hr>
+	<form action="" name="searchForm">
+		구성원 검색:
+		<select name="selectId" 
+		        onchange="searchMember();">
+			<option value="">===구성원 선택===</option>
+			<script type="text/javascript">
+				displayOptions();
+			</script>
+		</select>
+	</form>
 </body>
 </html>
